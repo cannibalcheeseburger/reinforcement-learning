@@ -79,5 +79,5 @@ for i in range(8):
     for j in range(8):
         plt.text(j, i, f'{q_values_grid[i, j]:.2f}', ha='center', va='center', color='black')
 
-plt.savefig('output/Q_values.png')
+plt.savefig('output/Q_value.png')
 

@@ -28,7 +28,7 @@ I tracked the *total return* (sum of rewards) for each episode. Here’s the gra
 
 After training, I checked out the *Q-values* for each state. The brighter the color, the more promising that state is for the agent.
 
-![Q-values Heatmap](output/Q_values.png)
+![Q-values Heatmap](output/Q_value.png)
 
 - **Hot spots:** The agent figured out which states are close to the goal (bottom right).
 - **Cold zones:** Holes and dead ends-places to avoid!
