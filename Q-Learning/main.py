@@ -64,7 +64,7 @@ plt.ylabel('Return')
 plt.title('Return vs Episode')
 plt.legend()
 plt.grid(True)
-plt.savefig('Return_Episode.png')
+plt.savefig('output/Return_Episode.png')
 
 
 q_values_grid = np.max(Q, axis=1).reshape((8, 8))
@@ -73,12 +73,11 @@ plt.figure(figsize=(6, 6))
 plt.imshow(q_values_grid, cmap='coolwarm', interpolation='nearest')
 plt.colorbar(label='Q-value')
 plt.title('Learned Q-values for each state')
-# plt.gca().invert_yaxis()
 plt.grid(True)
 
 for i in range(8):
     for j in range(8):
         plt.text(j, i, f'{q_values_grid[i, j]:.2f}', ha='center', va='center', color='black')
 
-plt.savefig('Q_values.png')
+plt.savefig('output/Q_values.png')
 
