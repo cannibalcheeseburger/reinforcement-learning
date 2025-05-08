@@ -1,2 +1,5 @@
 .vscode
 .DS_Store
+Deep_Q-Network/models/
+Q-Learning/runs/frozenlake_experiment
+Deep_Q-Network/runs

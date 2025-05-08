@@ -1,0 +1,1 @@
+rsync -aWvr --progress --delete --files-from='rsync_files.txt' ./ aib242289@hpc.iitd.ac.in:~/rl/

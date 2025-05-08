@@ -3,6 +3,8 @@ import numpy as np
 import random
 import time
 import matplotlib.pyplot as plt
+from tensorboardX import SummaryWriter  
+writer = SummaryWriter(logdir='runs/frozenlake_experiment')  
 
 returns = []
 
@@ -44,8 +46,10 @@ for episode in range(episodes):
         state = new_state
         total_reward += reward
     returns.append(total_reward)
+    writer.add_scalar('Return/Episode', total_reward, episode)
     print('Return:',total_reward,'Episode:',episode)
 env.close()
+writer.close()  
 
 
 test_env = gym.make('FrozenLake-v1', **env_args, render_mode="human")  
@@ -64,7 +68,7 @@ plt.ylabel('Return')
 plt.title('Return vs Episode')
 plt.legend()
 plt.grid(True)
-plt.savefig('output/Return_Episode.png')
+# plt.savefig('output/Return_Episode.png')
 
 
 q_values_grid = np.max(Q, axis=1).reshape((8, 8))
@@ -79,5 +83,6 @@ for i in range(8):
     for j in range(8):
         plt.text(j, i, f'{q_values_grid[i, j]:.2f}', ha='center', va='center', color='black')
 
-plt.savefig('output/Q_value.png')
+# plt.savefig('output/Q_value.png')
 
+print("Run 'tensorboard --logdir runs' to view performance graphs!")
