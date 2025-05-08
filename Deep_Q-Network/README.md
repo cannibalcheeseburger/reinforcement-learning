@@ -1,66 +1,82 @@
-# DQN on LunarLander-v3: Experiment Log
+# DQN Experiments: LunarLander & CartPole
 
-This project explores Deep Q-Networks (DQN) on the [LunarLander-v3](https://gymnasium.farama.org/environments/box2d/lunar_lander/) environment using PyTorch and TensorBoardX for tracking progress. The experiment is inspired by the classic DQN tutorial, but with a larger network and more episodes to tackle the harder LunarLander task.
+This project explores Deep Q-Networks (DQN) on two classic reinforcement learning environments: **LunarLander-v3** and **CartPole-v1**. We tracked learning progress with TensorBoardX and visualized both the agent’s return and performance in action.
 
 ---
 
-## 🚀 Experiment Setup
+## 🚀 LunarLander-v3
 
-- **Environment:** LunarLander-v3 (Gymnasium)
-- **Network:** 2 hidden layers, 256 units each (bigger than CartPole)
+- **Environment:** LunarLander-v3 (continuous 2D lander)
+- **Network:** 2 hidden layers, 256 units each
 - **Replay Buffer:** 100,000 transitions
 - **Batch Size:** 256
-- **Discount Factor (γ):** 0.99
-- **Epsilon-Greedy:** Decays from 0.9 to 0.01 (slower decay)
-- **Target Network Update:** Soft update with τ=0.01
-- **Optimizer:** AdamW, learning rate 1e-4
-- **Episodes:** 1500 (on GPU/Apple Silicon)
+- **Episodes:** 1500
 
----
+### Findings
+![Return vs Episode](output/lunarlander/Return_Episode.png)
+- **Return vs Episode:** The agent learns to land safely after a few hundred episodes, with returns rising and stabilizing over time.
 
-## 📊 Tracking Progress
+![Duration vs Episode](output/lunarlander/Duration_Episode.png)
+- **Duration vs Episode:** The agent survives longer as training progresses, indicating better control and landing skills.
 
-We used **TensorBoardX** to log and visualize:
-
-- **Return vs Episode:** How much reward the agent gets each episode.
-- **Duration vs Episode:** How long (in steps) the agent survives each episode.
-
----
-
-
-### Agent in Action
 
 ![LunarLander Demo](output/lunarlander/lunarlander.gif)
 
-*The agent learns to land safely between the flags!*
+---
+
+## 🎯 CartPole-v1
+
+- **Environment:** CartPole-v1 (classic control, balance the pole)
+- **Network:** 2 hidden layers, 128 units each
+- **Replay Buffer:** 10,000 transitions
+- **Batch Size:** 128
+- **Episodes:** 600 (on GPU/Apple Silicon)
+
+### Results
+
+#### Return vs Episode
+
+![Return vs Episode](output/catpole/Return_Episode.png)
+
+- The agent starts with low returns, but after ~100 episodes, performance improves rapidly.
+- By episode 400, the agent consistently achieves the maximum possible return, showing it has mastered balancing the pole.
+- Occasional drops reflect ongoing exploration or environment stochasticity.
+
+#### Agent Demo
+
+![CartPole Demo](output/catpole/cartpole_demo.gif)
+
+- The trained agent keeps the pole balanced for the full duration.
 
 ---
 
-### Return vs Episode
+## 📊 Tracking Progress with TensorBoardX
 
-![Return vs Episode](output/lunarlander/Return_Episode.png)
+We logged:
+- **Return/Episode:** Total reward per episode (how well the agent performed)
+- **Duration/Episode:** Number of steps survived per episode (especially meaningful for CartPole)
 
-- Early episodes: Returns are low and noisy as the agent explores.
-- After ~200 episodes: Returns rise and stabilize, showing the agent is learning to land safely.
-- Occasional dips: The agent sometimes "forgets" or explores, but overall performance improves.
+To view the learning curves:
 
----
+`tensorboard --logdir runs`
 
-### Duration vs Episode
-
-![Duration vs Episode](output/lunarlander/Duration_Episode.png)
-
-- At first, durations are short (crashes!).
-- As training progresses, the agent survives longer, with more consistent episode lengths.
-- Spikes and drops reflect exploration and the stochastic nature of the environment.
+Open [http://localhost:6006](http://localhost:6006) in your browser.
 
 ---
 
+## 💡 What We Learned
 
-## 💡 What Did We Learn?
+- **DQN is effective:** With a good network and enough training, DQN can solve both LunarLander and CartPole.
+- **Visualization is key:** TensorBoardX graphs make it easy to spot when the agent is learning or stuck.
+- **Saving models:** We saved and loaded both `policy_net` and `target_net` for reproducibility and further testing.
 
-- **Reward and duration both matter:** Tracking both gives a fuller picture of learning.
-- **DQN works for LunarLander:** With enough training and a big enough network, the agent learns a robust landing policy.
-- **TensorBoardX is awesome:** Live graphs make it easy to spot learning progress and issues.
+---
+
+## 🛠️ How to Run
+
+1. Install requirements:  
+   `pip install gymnasium[box2d] torch tensorboardX matplotlib`
+2. Run the training script for either environment.
+3. Launch TensorBoard to monitor learning.
 
 ---
