@@ -3,3 +3,6 @@
 Deep_Q-Network/models/
 Q-Learning/runs/frozenlake_experiment
 Deep_Q-Network/runs
+Actor-Critic/models
+REINFORCE/runs
+Actor-Critic/runs

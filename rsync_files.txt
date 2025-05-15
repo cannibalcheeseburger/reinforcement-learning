@@ -2,3 +2,5 @@ rsync_files.txt
 environment.yml
 Q-Learning
 Deep_Q-Network
+Actor-Critic/actor_critic.ipynb
+REINFORCE/REINFORCE.ipynb

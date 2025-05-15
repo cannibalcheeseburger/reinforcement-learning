@@ -1,1 +1,1 @@
-rsync -aWvr --progress   aib242289@hpc.iitd.ac.in:~/rl/Deep_Q-Network/models/* Deep_Q-Network/models/
+rsync -aWvr --progress   aib242289@hpc.iitd.ac.in:~/rl/runs ./Actor-Critic/
