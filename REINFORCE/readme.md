@@ -25,7 +25,7 @@ Welcome! This repo is a hands-on adventure in reinforcement learning, where we t
 | Map Size | Episodes to Succeed | Training Time | Final Success Rate |
 |----------|--------------------|---------------|--------------------|
 | 4x4      | ~5,000             | ~3 min        | 100%               |
-| 8x8      | ~15,000+           | ~14 min       | 97%                |
+| 8x8      | ~15,000+           | ~14 min       | 100%                |
 
 You can see the learning curve in TensorBoard (just run `tensorboard --logdir runs`).
 
