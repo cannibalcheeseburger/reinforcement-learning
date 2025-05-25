@@ -1,10 +1,8 @@
 .vscode
 .DS_Store
 Deep_Q-Network/models/
-Q-Learning/runs/frozenlake_experiment
-Deep_Q-Network/runs
 Actor-Critic/models
-REINFORCE/runs
-Actor-Critic/runs
 REINFORCE/models
-REINFORCE/runs
+runs*
+*.pkl
+*.pth

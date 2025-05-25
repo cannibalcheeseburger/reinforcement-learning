@@ -4,17 +4,19 @@ import random
 import time
 import matplotlib.pyplot as plt
 from tensorboardX import SummaryWriter  
-writer = SummaryWriter(logdir='runs/frozenlake_experiment')  
 
 returns = []
 
 random.seed(96)
-env_args = dict(map_name="8x8", is_slippery=False)
-
+mapsize = 8
+env_args = dict(map_name=f"{mapsize}x{mapsize}", is_slippery=False)
+outfolder = '..'
 env = gym.make('FrozenLake-v1', **env_args, render_mode="ansi")
 state_space = env.observation_space.n
 action_space = env.action_space.n
 Q = np.zeros((state_space, action_space))
+writer = SummaryWriter(logdir=f'{outfolder}/runs/QLearning_{mapsize}x{mapsize}')  
+
 alpha = 0.8
 gamma = 0.95
 epsilon = 0.2
@@ -61,28 +63,28 @@ while not done:
     test_env.render()  
 test_env.close()  
 
-plt.figure(figsize=(10,6))
-plt.plot(returns, label='Return per Episode', color='cyan')
-plt.xlabel('Episode')
-plt.ylabel('Return')
-plt.title('Return vs Episode')
-plt.legend()
-plt.grid(True)
-# plt.savefig('output/Return_Episode.png')
+# plt.figure(figsize=(10,6))
+# plt.plot(returns, label='Return per Episode', color='cyan')
+# plt.xlabel('Episode')
+# plt.ylabel('Return')
+# plt.title('Return vs Episode')
+# plt.legend()
+# plt.grid(True)
+# # plt.savefig('output/Return_Episode.png')
 
 
-q_values_grid = np.max(Q, axis=1).reshape((8, 8))
+# q_values_grid = np.max(Q, axis=1).reshape((8, 8))
 
-plt.figure(figsize=(6, 6))
-plt.imshow(q_values_grid, cmap='coolwarm', interpolation='nearest')
-plt.colorbar(label='Q-value')
-plt.title('Learned Q-values for each state')
-plt.grid(True)
+# plt.figure(figsize=(6, 6))
+# plt.imshow(q_values_grid, cmap='coolwarm', interpolation='nearest')
+# plt.colorbar(label='Q-value')
+# plt.title('Learned Q-values for each state')
+# plt.grid(True)
 
-for i in range(8):
-    for j in range(8):
-        plt.text(j, i, f'{q_values_grid[i, j]:.2f}', ha='center', va='center', color='black')
+# for i in range(8):
+#     for j in range(8):
+#         plt.text(j, i, f'{q_values_grid[i, j]:.2f}', ha='center', va='center', color='black')
 
-# plt.savefig('output/Q_value.png')
+# # plt.savefig('output/Q_value.png')
 
-print("Run 'tensorboard --logdir runs' to view performance graphs!")
+# print("Run 'tensorboard --logdir runs' to view performance graphs!")
