@@ -21,12 +21,13 @@ def main(outfolder, mapsize, episodes, is_slippery):
     gamma = 0.95
     epsilon = 0.2
     returns = []
-
+    steps = 0
     for episode in range(episodes):
         state = env.reset()[0]
         done = False
         total_reward = 0
         while not done:
+            steps +=1
             if random.uniform(0,1) < epsilon:
                 action = env.action_space.sample()
             else:
@@ -42,8 +43,9 @@ def main(outfolder, mapsize, episodes, is_slippery):
             state = new_state
             total_reward += reward
         returns.append(total_reward)
-        writer.add_scalar('Return/Episode', total_reward, episode)
-        print('Return:', total_reward, 'Episode:', episode)
+        writer.add_scalar('Return',total_reward,steps)
+        # writer.add_scalar('Return/Episode', total_reward, episode)
+        # print('Return:', total_reward, 'Episode:', episode)
 
     env.close()
     writer.close()

@@ -1,6 +1,6 @@
-# 🧊 FrozenLake Mastery: Actor-Critic on Slippery Ice
+# 🧊 FrozenLake Mastery: Advantage-Actor-Critic on Slippery Ice
 
-This project implements the **Actor-Critic** algorithm for solving OpenAI Gymnasium's FrozenLake environment with slippery tiles enabled (`is_slippery=True`). We compare learning performance on both the standard 4×4 map and the more challenging 8×8 grid.
+This project implements the **Advantage-Actor-Critic** algorithm for solving OpenAI Gymnasium's FrozenLake environment with slippery tiles enabled (`is_slippery=True`). We compare learning performance on both the standard 4×4 map and the more challenging 8×8 grid.
 
 
 FrozenLake is a classic reinforcement learning challenge:
@@ -8,7 +8,7 @@ FrozenLake is a classic reinforcement learning challenge:
 - When `is_slippery=True`, the agent has only a 33% chance of moving in the intended direction
 - The stochastic nature makes this much harder than the deterministic version
 
-## 🧠 Actor-Critic Implementation
+## 🧠 Advantage-Actor-Critic Implementation
 
 ```
 State → One-Hot Encoding → FC Layer (128) → [Actor Head, Critic Head]
@@ -25,7 +25,7 @@ State → One-Hot Encoding → FC Layer (128) → [Actor Head, Critic Head]
 | 4×4 Slippery| 100K     | 36.39 min     | ~74%         |
 | 8×8 Slippery| 200K     | 1.931 hr      | ~54%         |
 
-![Actor-Critic Training Performance](output/ActorCritic.png)
+![Advantage-Actor-Critic Training Performance](output/ActorCritic.png)
 
 
 ### Key Observations:
